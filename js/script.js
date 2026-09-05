@@ -1,9 +1,10 @@
 // ---------- Footer year ----------
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// ---------- Detect touch devices: disable custom cursor ----------
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
 
+// ---------- Custom cursor (desktop only) ----------
 if (isTouchDevice) {
   document.body.classList.add("no-custom-cursor");
 } else {
@@ -27,12 +28,20 @@ if (isTouchDevice) {
   }
   animateRing();
 
-  const interactiveSelectors = "a, button, .cert-card, .tag-list span, .timeline-card";
+  const interactiveSelectors = "a, button, .cert-card, .bento-card, .exp-card, .chip-list span, .skill-category";
   document.querySelectorAll(interactiveSelectors).forEach((el) => {
     el.addEventListener("mouseenter", () => cursorRing.classList.add("cursor-active"));
     el.addEventListener("mouseleave", () => cursorRing.classList.remove("cursor-active"));
   });
 }
+
+// ---------- Sticky navbar background on scroll ----------
+const navbar = document.getElementById("navbar");
+function updateNavbar() {
+  navbar.classList.toggle("scrolled", window.scrollY > 20);
+}
+window.addEventListener("scroll", updateNavbar);
+updateNavbar();
 
 // ---------- Mobile nav toggle ----------
 const navToggle = document.getElementById("navToggle");
@@ -60,12 +69,18 @@ window.addEventListener("scroll", () => {
   scrollProgress.style.width = pct + "%";
 });
 
-// ---------- Reveal on scroll ----------
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const revealEls = document.querySelectorAll(".reveal");
+// ---------- Reveal on scroll, staggered within each group ----------
+const revealGroups = {};
+document.querySelectorAll(".reveal").forEach((el) => {
+  const parent = el.closest("section")?.id || "default";
+  revealGroups[parent] = revealGroups[parent] || [];
+  const indexInGroup = revealGroups[parent].length;
+  revealGroups[parent].push(el);
+  el.style.transitionDelay = prefersReducedMotion ? "0s" : `${Math.min(indexInGroup * 70, 420)}ms`;
+});
 
 if (prefersReducedMotion) {
-  revealEls.forEach((el) => el.classList.add("in-view"));
+  document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in-view"));
 } else {
   const revealObserver = new IntersectionObserver(
     (entries) => {
@@ -76,13 +91,13 @@ if (prefersReducedMotion) {
         }
       });
     },
-    { threshold: 0.15 }
+    { threshold: 0.12 }
   );
-  revealEls.forEach((el) => revealObserver.observe(el));
+  document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 }
 
 // ---------- Active section highlighting in nav ----------
-const sections = document.querySelectorAll(".section");
+const sections = document.querySelectorAll(".section, .hero");
 const navAnchors = document.querySelectorAll(".nav-link");
 
 const navObserver = new IntersectionObserver(
@@ -101,44 +116,37 @@ const navObserver = new IntersectionObserver(
 
 sections.forEach((section) => navObserver.observe(section));
 
-// ---------- Subtle animated dot-grid background ----------
-const canvas = document.getElementById("bgCanvas");
-const ctx = canvas.getContext("2d");
-let width, height, dots;
-
-function resizeCanvas() {
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
-  const spacing = 46;
-  dots = [];
-  for (let x = spacing / 2; x < width; x += spacing) {
-    for (let y = spacing / 2; y < height; y += spacing) {
-      dots.push({ x, y, baseY: y, offset: Math.random() * Math.PI * 2 });
-    }
-  }
-}
-
-function drawFrame(time) {
-  ctx.clearRect(0, 0, width, height);
-  ctx.fillStyle = "rgba(232, 163, 61, 0.35)";
-  const t = time * 0.001;
-
-  dots.forEach((d) => {
-    const wobble = prefersReducedMotion ? 0 : Math.sin(t * 0.6 + d.offset) * 3;
-    ctx.beginPath();
-    ctx.arc(d.x, d.baseY + wobble, 1.1, 0, Math.PI * 2);
-    ctx.fill();
+// ---------- Magnetic buttons ----------
+if (!isTouchDevice && !prefersReducedMotion) {
+  document.querySelectorAll(".magnetic").forEach((btn) => {
+    btn.addEventListener("mousemove", (e) => {
+      const rect = btn.getBoundingClientRect();
+      const relX = e.clientX - rect.left - rect.width / 2;
+      const relY = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${relX * 0.18}px, ${relY * 0.3}px)`;
+    });
+    btn.addEventListener("mouseleave", () => {
+      btn.style.transform = "translate(0, 0)";
+    });
   });
-
-  if (!prefersReducedMotion) {
-    requestAnimationFrame(drawFrame);
-  }
 }
 
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-requestAnimationFrame(drawFrame);
-if (prefersReducedMotion) {
-  // Draw a single static frame instead of animating continuously.
-  drawFrame(0);
+// ---------- Subtle hero parallax on mouse move ----------
+if (!isTouchDevice && !prefersReducedMotion) {
+  const glowGold = document.getElementById("glowGold");
+  const glowCyan = document.getElementById("glowCyan");
+  const portrait = document.getElementById("heroPortrait");
+  const heroSection = document.getElementById("home");
+
+  heroSection.addEventListener("mousemove", (e) => {
+    const rect = heroSection.getBoundingClientRect();
+    const relX = (e.clientX - rect.left) / rect.width - 0.5;
+    const relY = (e.clientY - rect.top) / rect.height - 0.5;
+
+    glowGold.style.transform = `translate(${relX * 30}px, ${relY * 30}px)`;
+    glowCyan.style.transform = `translate(${relX * -24}px, ${relY * -24}px)`;
+    if (portrait) {
+      portrait.style.transform = `translate(${relX * 10}px, ${relY * 10}px)`;
+    }
+  });
 }

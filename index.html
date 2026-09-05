@@ -12,7 +12,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -20,22 +20,22 @@
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<canvas id="bgCanvas" class="bg-canvas"></canvas>
-
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<header class="navbar">
+<header class="navbar" id="navbar">
   <a href="#home" class="brand">SJ</a>
 
   <nav class="nav-links" id="navLinks">
     <a href="#home" class="nav-link">Home</a>
-    <a href="#about" class="nav-link">About</a>
-    <a href="#education" class="nav-link">Education</a>
+    <a href="#summary" class="nav-link">Summary</a>
     <a href="#experience" class="nav-link">Experience</a>
-    <a href="#certifications" class="nav-link">Certifications</a>
     <a href="#skills" class="nav-link">Skills</a>
+    <a href="#certifications" class="nav-link">Certifications</a>
+    <a href="#about" class="nav-link">About</a>
     <a href="#contact" class="nav-link">Contact</a>
   </nav>
+
+  <a href="#contact" class="btn btn-primary btn-small nav-cta">Let's Talk</a>
 
   <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -44,33 +44,296 @@
 
 <main>
 
-  <!-- HOME -->
-  <section id="home" class="section hero">
-    <div class="hero-photo-wrap reveal">
-      <div class="hero-photo-ring"></div>
-      <img src="assets/profile.jpg" alt="Photo of Shubham Jani" class="hero-photo" onerror="this.classList.add('img-fallback')">
+  <!-- ================= HERO ================= -->
+  <section id="home" class="hero">
+    <div class="hero-glow hero-glow-gold" id="glowGold"></div>
+    <div class="hero-glow hero-glow-cyan" id="glowCyan"></div>
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="focus-tags reveal">IT Support <span>&middot;</span> Cloud <span>&middot;</span> Security</p>
+        <p class="eyebrow reveal">Ontario, Canada &middot; Open to opportunities</p>
+        <h1 class="hero-name reveal">Shubham<br>Jani</h1>
+        <h2 class="hero-role reveal">IT Support &amp; Cybersecurity Professional</h2>
+        <p class="hero-summary reveal">
+          Customer-focused support professional with 2+ years resolving issues
+          across phone, email, and chat &mdash; now building toward cybersecurity
+          and cloud security roles with ISC2 CC, AWS CCP, and a postgraduate
+          diploma in Cybersecurity &amp; Threat Management.
+        </p>
+        <div class="hero-ctas reveal">
+          <a href="#experience" class="btn btn-primary magnetic">View My Experience</a>
+          <a href="assets/resume.pdf" class="btn btn-outline magnetic" download>Download Résumé</a>
+          <a href="#contact" class="btn btn-ghost magnetic">Contact Me</a>
+        </div>
+      </div>
+
+      <div class="hero-portrait reveal" id="heroPortrait">
+        <div class="portrait-card">
+          <div class="portrait-glow"></div>
+          <img src="assets/profile.jpg" alt="Photo of Shubham Jani" class="portrait-img" onerror="this.classList.add('img-fallback')">
+          <div class="portrait-chips">
+            <span class="portrait-chip">Ontario, Canada</span>
+            <span class="portrait-chip portrait-chip-live"><span class="tag-dot"></span> Open to work</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="hero-text">
-      <p class="hero-kicker reveal">Ontario, Canada</p>
-      <h1 class="hero-name reveal">Shubham Jani</h1>
-      <h2 class="hero-title reveal">IT Support &amp; Cybersecurity Professional</h2>
-      <p class="hero-summary reveal">
-        Customer-focused support professional with 2+ years of experience resolving
-        issues across phone, email, and chat. Now building toward cybersecurity and
-        cloud security roles, backed by an ISC2 Certified in Cybersecurity credential,
-        AWS Cloud Practitioner certification, and a postgraduate diploma in
-        Cybersecurity &amp; Threat Management.
-      </p>
-      <div class="hero-ctas reveal">
-        <a href="#experience" class="btn btn-primary">View My Experience</a>
-        <a href="assets/resume.pdf" class="btn btn-outline" download>Download Résumé</a>
-        <a href="#contact" class="btn btn-ghost">Contact Me</a>
+    <div class="stats-row reveal">
+      <div class="stat">
+        <span class="stat-value">2+</span>
+        <span class="stat-label">Years in Support</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">2</span>
+        <span class="stat-label">Certifications Earned</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">1</span>
+        <span class="stat-label">In Progress &mdash; CompTIA A+</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">Cloud +</span>
+        <span class="stat-label">Security Focus</span>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- ================= RECRUITER SUMMARY / BENTO ================= -->
+  <section id="summary" class="section">
+    <h2 class="section-heading reveal">Recruiter Summary</h2>
+
+    <div class="bento-grid">
+      <div class="bento-card bento-experience reveal">
+        <span class="bento-label bento-label-numbered">01 &nbsp;Current Role</span>
+        <h3>Technical Support I</h3>
+        <p class="bento-sub">Chalo Opticals &middot; Sep 2025 &ndash; Present</p>
+        <ul class="bento-mini-list">
+          <li>Full ownership from first contact to resolution</li>
+          <li>De-escalation &amp; complaint handling</li>
+          <li>High-volume, cross-channel support</li>
+          <li>Accurate documentation &amp; QA</li>
+        </ul>
+      </div>
+
+      <div class="bento-card bento-tools reveal">
+        <span class="bento-label">Tools I Use</span>
+        <div class="mini-chip-list">
+          <span>Excel</span><span>Outlook</span><span>Intune</span>
+          <span>WatchGuard</span><span>ConnectWise</span>
+        </div>
+      </div>
+
+      <div class="bento-card bento-certs reveal">
+        <span class="bento-label">Certifications</span>
+        <h3>ISC2 CC &middot; AWS CCP</h3>
+        <p class="bento-sub">CompTIA A+ in progress</p>
+      </div>
+
+      <div class="bento-card bento-focus reveal">
+        <span class="bento-label">Current Focus</span>
+        <h3>Cybersecurity &amp; Threat Management</h3>
+        <p class="bento-sub">Postgraduate Diploma &middot; Seneca Polytechnic</p>
+      </div>
+
+      <div class="bento-card bento-wide reveal">
+        <span class="bento-label">Why Me</span>
+        <p>
+          I bring genuine ownership to every interaction &mdash; active listening,
+          empathetic communication, and root-cause thinking that resolves issues
+          instead of just closing tickets. I'm now channeling that same ownership
+          mindset into cybersecurity, backed by real certifications and a
+          postgraduate diploma, not just interest.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EXPERIENCE ================= -->
+  <section id="experience" class="section">
+    <h2 class="section-heading reveal">Experience</h2>
+
+    <div class="exp-list">
+
+      <article class="exp-card reveal">
+        <div class="exp-head">
+          <div>
+            <h3>Technical Support I</h3>
+            <p class="exp-org">Chalo Opticals &middot; Toronto, ON</p>
+          </div>
+          <span class="exp-date">Sep 2025 &ndash; Present</span>
+        </div>
+        <ul>
+          <li>Provided first-level support and issue triage across phone, email, and chat, taking ownership of each request
+from first contact through resolution.</li>
+          <li>Applied active listening and empathetic communication to identify root causes and deliver tailored, solution-oriented responses.</li>
+          <li>Investigated and resolved the majority of issues independently through critical thinking, escalating only
+when specialized authorization was required – mirroring a tiered IT support workflow.</li>
+          <li>Investigated complaints thoroughly, resolving most issues independently through critical thinking before escalating.</li>
+          <li>Followed up proactively after resolution to confirm satisfaction and strengthen long-term relationships.</li>
+          <li>Managed a high volume of concurrent requests, prioritizing urgency and accuracy to meet service standards.</li>
+          <li>Documented interactions with accuracy to support quality assurance and team knowledge sharing.</li>
+        </ul>
+      </article>
+
+      <article class="exp-card reveal">
+        <div class="exp-head">
+          <div>
+            <h3>System Analyst (Internal Support)</h3>
+            <p class="exp-org">Wappzo Infotech Private Limited &middot; Gujarat, India</p>
+          </div>
+          <span class="exp-date">Sep 2022 &ndash; Nov 2023</span>
+        </div>
+        <ul>
+          <li>Responded to internal support requests from staff across departments on system, software, and access issues.</li>
+          <li>Managed the full support ticket lifecycle from intake through resolution and follow-up.</li>
+          <li>Communicated technical updates to non-technical stakeholders clearly and transparently.</li>
+          <li>Collaborated cross-functionally to understand business needs and deliver timely solutions.</li>
+          <li>Documented support procedures and troubleshooting steps in SharePoint, reducing resolution time for recurring issues.</li>
+          <li>Handled user account management: setup, modification, and deactivation.</li>
+        </ul>
+
+        <div class="workflow-strip">
+          <div class="workflow-step"><span class="workflow-num">01</span>Identify</div>
+          <div class="workflow-arrow">&rarr;</div>
+          <div class="workflow-step"><span class="workflow-num">02</span>Diagnose</div>
+          <div class="workflow-arrow">&rarr;</div>
+          <div class="workflow-step"><span class="workflow-num">03</span>Resolve</div>
+          <div class="workflow-arrow">&rarr;</div>
+          <div class="workflow-step"><span class="workflow-num">04</span>Document</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section id="skills" class="section">
+    <h2 class="section-heading reveal">Skills</h2>
+
+    <div class="skills-grid">
+      <div class="skill-category reveal">
+        <h3>Customer Service &amp; Experience</h3>
+        <div class="chip-list">
+          <span>Customer-centric service</span><span>Customer satisfaction</span>
+          <span>Customer advocacy</span><span>Relationship building</span>
+          <span>Service recovery</span><span>Proactive support</span>
+          <span>Personalized service</span><span>Needs assessment</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <h3>Communication</h3>
+        <div class="chip-list">
+          <span>Active listening</span><span>Empathetic communication</span>
+          <span>Verbal &amp; written communication</span><span>Rapport building</span>
+          <span>Clear explanation</span><span>Questioning &amp; probing</span>
+          <span>Professional composure</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <h3>Problem Solving &amp; Judgment</h3>
+        <div class="chip-list">
+          <span>Critical thinking</span><span>Root cause analysis</span>
+          <span>Troubleshooting</span><span>Solution-oriented thinking</span>
+          <span>Independent problem solving</span><span>Issue ownership</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <h3>Complaint Handling &amp; Escalations</h3>
+        <div class="chip-list">
+          <span>Conflict resolution</span><span>De-escalation</span>
+          <span>Complaint handling</span><span>Escalation management</span>
+          <span>Emotional intelligence</span><span>Patience</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <h3>Work Performance</h3>
+        <div class="chip-list">
+          <span>Multitasking</span><span>Time management</span>
+          <span>Prioritization</span><span>Attention to detail</span>
+          <span>Accuracy</span><span>Accountability</span>
+          <span>Adaptability</span><span>High-volume support</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <h3>Teamwork &amp; Operations</h3>
+        <div class="chip-list">
+          <span>Cross-functional collaboration</span><span>Knowledge sharing</span>
+          <span>Documentation</span><span>Quality assurance</span>
+          <span>Policy compliance</span><span>Process improvement</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <h3>Tools &amp; Technical</h3>
+        <div class="chip-list">
+          <span>Microsoft Excel</span><span>Microsoft Word</span>
+          <span>Microsoft Outlook</span><span>Microsoft Intune</span>
+          <span>WatchGuard</span><span>ConnectWise</span>
+          <span>Data entry &amp; transaction accuracy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CERTIFICATIONS ================= -->
+  <section id="certifications" class="section">
+    <h2 class="section-heading reveal">Certifications</h2>
+
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <div class="cert-top">
+          <div class="cert-badge">CC</div>
+          <span class="cert-check">&#10003;</span>
+        </div>
+        <h3>ISC2 Certified in Cybersecurity</h3>
+        <p class="cert-issuer">ISC2</p>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-top">
+          <div class="cert-badge">CCP</div>
+          <span class="cert-check">&#10003;</span>
+        </div>
+        <h3>AWS Certified Cloud Practitioner</h3>
+        <p class="cert-issuer">Amazon Web Services</p>
+      </div>
+
+      <div class="cert-card cert-progress reveal">
+        <div class="cert-top">
+          <div class="cert-badge">A+</div>
+        </div>
+        <h3>CompTIA A+</h3>
+        <p class="cert-issuer">CompTIA</p>
+        <span class="cert-status">In Progress</span>
+      </div>
+    </div>
+
+    <div class="education-strip reveal">
+      <div class="edu-item">
+        <span class="edu-date">Jan 2024 &ndash; Sep 2024</span>
+        <div>
+          <h4>Ontario College Postgraduate &mdash; Cybersecurity and Threat Management</h4>
+          <p>Seneca Polytechnic &middot; Toronto, ON</p>
+        </div>
+      </div>
+      <div class="edu-item">
+        <span class="edu-date">Jul 2019 &ndash; May 2023</span>
+        <div>
+          <h4>Bachelor of Technology &mdash; Computer Science Engineering</h4>
+          <p>Parul University &middot; Gujarat, India</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
   <section id="about" class="section">
     <h2 class="section-heading reveal">About</h2>
     <p class="about-text reveal">
@@ -84,179 +347,18 @@
     </p>
   </section>
 
-  <!-- EDUCATION -->
-  <section id="education" class="section">
-    <h2 class="section-heading reveal">Education</h2>
-    <div class="timeline">
-      <div class="timeline-item reveal">
-        <div class="timeline-date">Jan 2024 &ndash; Sep 2024</div>
-        <div class="timeline-card">
-          <h3>Ontario College Postgraduate &mdash; Cybersecurity and Threat Management</h3>
-          <p class="timeline-org">Seneca Polytechnic &middot; Toronto, ON</p>
-        </div>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-date">Jul 2019 &ndash; May 2023</div>
-        <div class="timeline-card">
-          <h3>Bachelor of Technology &mdash; Computer Science Engineering</h3>
-          <p class="timeline-org">Parul University &middot; Gujarat, India</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience" class="section">
-    <h2 class="section-heading reveal">Experience</h2>
-    <div class="timeline">
-
-      <div class="timeline-item reveal">
-        <div class="timeline-date">Sep 2025 &ndash; Present</div>
-        <div class="timeline-card">
-          <h3>Customer Support Representative</h3>
-          <p class="timeline-org">Chalo Opticals &middot; Toronto, ON</p>
-          <ul>
-            <li>Resolved customer inquiries, complaints, and service requests across phone, email, and chat, taking full ownership of each interaction.</li>
-            <li>Applied active listening and empathetic communication to identify the root cause of concerns and deliver tailored, solution-oriented responses.</li>
-            <li>De-escalated difficult situations by remaining calm and professional under pressure, rebuilding customer confidence.</li>
-            <li>Investigated complaints thoroughly, resolving most issues independently through critical thinking before escalating.</li>
-            <li>Followed up proactively after resolution to confirm satisfaction and strengthen long-term relationships.</li>
-            <li>Managed a high volume of concurrent requests, prioritizing urgency and accuracy to meet service standards.</li>
-            <li>Documented interactions with accuracy to support quality assurance and team knowledge sharing.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeline-item reveal">
-        <div class="timeline-date">Sep 2022 &ndash; Nov 2023</div>
-        <div class="timeline-card">
-          <h3>System Analyst (Internal Support)</h3>
-          <p class="timeline-org">Wappzo Infotech Private Limited &middot; Gujarat, India</p>
-          <ul>
-            <li>Responded to internal support requests from staff across departments on system, software, and access issues.</li>
-            <li>Managed the full support ticket lifecycle from intake through resolution and follow-up.</li>
-            <li>Communicated technical updates to non-technical stakeholders clearly and transparently.</li>
-            <li>Collaborated cross-functionally to understand business needs and deliver timely solutions.</li>
-            <li>Documented support procedures and troubleshooting steps in SharePoint, reducing resolution time for recurring issues.</li>
-            <li>Handled user account management: setup, modification, and deactivation.</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CERTIFICATIONS -->
-  <section id="certifications" class="section">
-    <h2 class="section-heading reveal">Certifications</h2>
-    <div class="cert-grid">
-
-      <div class="cert-card reveal">
-        <div class="cert-badge">CC</div>
-        <h3>ISC2 Certified in Cybersecurity</h3>
-        <p class="cert-issuer">ISC2</p>
-      </div>
-
-      <div class="cert-card reveal">
-        <div class="cert-badge">CCP</div>
-        <h3>AWS Certified Cloud Practitioner</h3>
-        <p class="cert-issuer">Amazon Web Services</p>
-      </div>
-
-      <div class="cert-card cert-progress reveal">
-        <div class="cert-badge">A+</div>
-        <h3>CompTIA A+</h3>
-        <p class="cert-issuer">CompTIA</p>
-        <span class="cert-status">In Progress</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills" class="section">
-    <h2 class="section-heading reveal">Skills</h2>
-    <div class="skills-grid">
-
-      <div class="skill-category reveal">
-        <h3>Customer Service &amp; Experience</h3>
-        <div class="tag-list">
-          <span>Customer-centric service</span><span>Customer satisfaction</span>
-          <span>Customer advocacy</span><span>Relationship building</span>
-          <span>Service recovery</span><span>Proactive support</span>
-          <span>Personalized service</span><span>Needs assessment</span>
-        </div>
-      </div>
-
-      <div class="skill-category reveal">
-        <h3>Communication</h3>
-        <div class="tag-list">
-          <span>Active listening</span><span>Empathetic communication</span>
-          <span>Verbal &amp; written communication</span><span>Rapport building</span>
-          <span>Clear explanation</span><span>Questioning &amp; probing</span>
-          <span>Professional composure</span>
-        </div>
-      </div>
-
-      <div class="skill-category reveal">
-        <h3>Problem Solving &amp; Judgment</h3>
-        <div class="tag-list">
-          <span>Critical thinking</span><span>Root cause analysis</span>
-          <span>Troubleshooting</span><span>Solution-oriented thinking</span>
-          <span>Independent problem solving</span><span>Issue ownership</span>
-        </div>
-      </div>
-
-      <div class="skill-category reveal">
-        <h3>Complaint Handling &amp; Escalations</h3>
-        <div class="tag-list">
-          <span>Conflict resolution</span><span>De-escalation</span>
-          <span>Complaint handling</span><span>Escalation management</span>
-          <span>Emotional intelligence</span><span>Patience</span>
-        </div>
-      </div>
-
-      <div class="skill-category reveal">
-        <h3>Work Performance</h3>
-        <div class="tag-list">
-          <span>Multitasking</span><span>Time management</span>
-          <span>Prioritization</span><span>Attention to detail</span>
-          <span>Accuracy</span><span>Accountability</span>
-          <span>Adaptability</span><span>High-volume support</span>
-        </div>
-      </div>
-
-      <div class="skill-category reveal">
-        <h3>Teamwork &amp; Operations</h3>
-        <div class="tag-list">
-          <span>Cross-functional collaboration</span><span>Knowledge sharing</span>
-          <span>Documentation</span><span>Quality assurance</span>
-          <span>Policy compliance</span><span>Process improvement</span>
-        </div>
-      </div>
-
-      <div class="skill-category reveal">
-        <h3>Tools &amp; Technical</h3>
-        <div class="tag-list">
-          <span>Microsoft Excel</span><span>Microsoft Word</span>
-          <span>Microsoft Outlook</span><span>Microsoft Intune</span>
-          <span>WatchGuard</span><span>ConnectWise</span>
-          <span>Data entry &amp; transaction accuracy</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CONTACT -->
+  <!-- ================= CONTACT ================= -->
   <section id="contact" class="section contact-section">
-    <h2 class="section-heading reveal">Contact</h2>
-    <p class="contact-text reveal">Open to IT support, help desk, SOC, and cloud security opportunities.</p>
+    <div class="contact-glow"></div>
+    <h2 class="contact-heading reveal">Need someone who can support users and grow into security?</h2>
+    <p class="contact-sub reveal">Let's talk.</p>
+
     <div class="contact-links reveal">
-      <a href="mailto:janishubham27@gmail.com" class="contact-link">janishubham27@gmail.com</a>
+      <a href="mailto:janishubham27@gmail.com" class="contact-link magnetic">janishubham27@gmail.com</a>
       <span class="contact-location">Ontario, Canada</span>
     </div>
-    <a href="assets/resume.pdf" class="btn btn-primary reveal" download>Download Résumé</a>
+
+    <a href="assets/resume.pdf" class="btn btn-primary magnetic reveal" download>Download Résumé</a>
 
     <footer class="footer">
       <span>&copy; <span id="year"></span> Shubham Jani</span>
